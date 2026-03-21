@@ -4,6 +4,9 @@ import Flag from './Flag';
 export function LanguagePicker(properties : LanguagePickerProperties){
     const languages = properties.languages ?? [];
     const initial = properties.defaultLanguage ?? 'en';
+    const useAbbreviations = properties.useAbbreviations ?? false;
+    const showFlags = properties.showFlags ?? true;
+    const showEnglishNames = properties.showEnglishNames ?? false;
     const [selected, setSelected] = useState(initial);
     const [open, setOpen] = useState(false);
     const containerRef = useRef<HTMLDivElement | null>(null);
@@ -30,7 +33,8 @@ export function LanguagePicker(properties : LanguagePickerProperties){
 
     if(languages.length === 0) return null;
 
-    const currentLabel = new Intl.DisplayNames([selected], { type: 'language' }).of(selected) || selected;
+    const displayLocale = showEnglishNames ? 'en' : selected;
+    const currentLabel = useAbbreviations ? selected : new Intl.DisplayNames(displayLocale ?? selected, { type: 'language' }).of(selected);
 
     return (
         <div ref={containerRef} className="inline-block relative">
@@ -40,21 +44,22 @@ export function LanguagePicker(properties : LanguagePickerProperties){
                 aria-expanded={open}
                 onClick={() => setOpen(s => !s)}
                 onKeyDown={(e) => { if(e.key === 'ArrowDown'){ e.preventDefault(); setOpen(true); } }}
-                className="inline-flex items-center gap-2"
+                className="flex border items-center gap-2"
             >
-                <Flag language={selected} className="w-5 h-3" title={selected} />
-                <span>{currentLabel}</span>
+                {showFlags && <Flag language={selected} className="w-5 h-3" title={selected} />}
+                <span className="">{currentLabel}</span>
                 <span aria-hidden className="ml-1">▾</span>
             </button>
 
             {open && (
+                <div className='overflow-y-visible h-500'>
                 <ul
                     role="listbox"
                     aria-label="Language selector"
-                    className="absolute mt-1 left-0 z-50 bg-white border border-gray-200 rounded p-1 list-none shadow-lg"
+                    className="absolute mt-1 left-0 z-50 bg-white border border-gray-200 rounded p-1 list-none shadow-lg max-h-60 overflow-y-auto"
                 >
                     {languages.map(l => {
-                        const label = new Intl.DisplayNames([l], { type: 'language' }).of(l) || l;
+                        const label = useAbbreviations ? l : new Intl.DisplayNames(displayLocale ?? l, { type: 'language' }).of(l);
                         const isSelected = l === selected;
                         return (
                             <li
@@ -66,12 +71,13 @@ export function LanguagePicker(properties : LanguagePickerProperties){
                                 onKeyDown={(e) => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectLanguage(l); } }}
                                 className={`flex items-center gap-2 px-2 py-1 cursor-pointer ${isSelected ? 'bg-gray-100' : 'hover:bg-gray-50'}`}
                             >
-                                <Flag className="w-5 h-3" language={l} />
+                                 {showFlags && <Flag language={l} className="w-5 h-3" />}
                                 <span>{label}</span>
                             </li>
                         );
                     })}
                 </ul>
+                </div>
             )}
         </div>
     );
@@ -82,4 +88,7 @@ export interface LanguagePickerProperties{
     defaultLanguage?: string;
     languageChanged?: (lng: string) => void;
     classNames?: string
+    useAbbreviations?: boolean
+    showFlags? : boolean;
+    showEnglishNames? : boolean;
 }
