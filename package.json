@@ -1,7 +1,7 @@
 {
   "name": "react-language-combobox",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -39,7 +39,9 @@
   "main": "dist/rreact-language-combobox.cjs.js",
   "module": "dist/react-language-combobox.es.js",
   "types": "dist/types/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ms-sk/react-language-combobox.git"
@@ -50,8 +52,7 @@
   "bugs": {
     "url": "https://github.com/ms-sk/react-language-combobo/issues"
   },
-  "homepage": "https://github.com/ms-sk/react-language-combobox#readme"
-  ,
+  "homepage": "https://github.com/ms-sk/react-language-combobox#readme",
   "publishConfig": {
     "access": "public"
   }
