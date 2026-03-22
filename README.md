@@ -1,4 +1,4 @@
-# react-language-picker
+# react-language-combobox
 
 > Small, accessible React language picker component with optional flags and customizable theme classes.
 
@@ -8,7 +8,7 @@ Install
 Install from npm:
 
 ```bash
-npm install react-language-picker
+npm install react-language-combobox
 ```
 
 Usage
