@@ -1,73 +1,83 @@
-# React + TypeScript + Vite
+# react-language-picker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Small, accessible React language picker component with optional flags and customizable theme classes.
 
-Currently, two official plugins are available:
+Install
+-------
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Install from npm:
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install react-language-picker
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Usage
+-----
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```tsx
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import { useTranslation } from 'react-i18next'
+import { LanguagePicker } from 'react-language-picker'
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+import './i18n' // make sure i18n is initialized
+
+function App(){
+	const { t, i18n } = useTranslation();
+
+	return (
+			<LanguagePicker
+				languages={[ 'en', 'fr', 'de', 'es' ]}
+				defaultLanguage={i18n.resolvedLanguage}
+				showFlags={true}
+				showEnglishNames={true}
+				languageChanged={(lng) => i18n.changeLanguage(lng)} />
+
+			<h1>{t('WelcomeToReact')}</h1>
+	)
+}
+
 ```
+
+Available exports
+-----------------
+
+- `LanguagePicker` — main component
+- `defaultTheme` — default theme class names (Tailwind-friendly)
+- Types: `LanguagePickerProperties`, `LanguagePickerTheme`
+
+Props / Options
+---------------
+
+The component accepts a `LanguagePickerProperties` object with these fields:
+
+- `languages?: string[]` — array of language tags (e.g. `['en','de','fr']`). Required for rendering; if empty the component returns `null`.
+- `defaultLanguage?: string` — initial selected language (default: `en`).
+- `languageChanged?: (lng: string) => void` — callback invoked when user selects a language.
+- `classNames?: string` — additional class names applied to the root container.
+- `useAbbreviations?: boolean` — when true, display language codes (`en`) instead of localized names.
+- `showFlags?: boolean` — when true, shows flag icons next to languages (default: `true`).
+- `showEnglishNames?: boolean` — when true, display language names in English rather than the selected locale.
+- `theme?: LanguagePickerTheme` — override default classes for styling. See below.
+
+Theme
+-----
+
+`LanguagePickerTheme` contains these optional string fields (class names are appended directly, so Tailwind or plain CSS works):
+
+- `container` — wrapper container classes (default: `inline-block relative`).
+- `button` — classes for the toggle button (default includes rounded border, padding, and layout).
+- `list` — classes for the dropdown list (default includes absolute positioning, border, max-height and scrolling behavior).
+- `item` — classes for each list item (hover/focus state classes recommended).
+- `selectedItem` — classes applied to the selected list item.
+
+Accessibility
+-------------
+
+The component uses ARIA roles (`listbox` / `option`) and keyboard navigation (ArrowUp/ArrowDown, Enter/Space to select). When the list is closed focus returns to the toggle button.
+
+Notes
+-----
+
+- The library externals `react` and `react-dom` to avoid bundling React into your app. Ensure those are installed in your host project.
+- Flag icons come from the `country-flag-icons` package — include it as a dependency in your project (this package already lists it as a dependency).

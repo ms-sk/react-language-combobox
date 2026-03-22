@@ -1,4 +1,4 @@
-import { GB, US, CN, TW, HK, IN, BD, PK, ES, MX, FR, SA, RU, PT, BR, ID, DE, JP, KE, VN, KR, IT, PL, UA, IR, MY, MM, NG, RO, NL, GR, CZ, HU, BG, SE, DK, FI, NO, IL, SK, HR, RS, LT, LV, EE, SI, BA, AL, MK, AM, AZ, GE, KZ, UZ, BY, KG, TJ, MN, NP, LK, KH, LA, MG, ZA, IE, PH, SO, TR, TH } from 'country-flag-icons/react/3x2';
+import { GB, US, CN, TW, HK, IN, BD, PK, ES, MX, FR, SA, RU, PT, BR, ID, DE, JP, KE, VN, KR, IT, PL, UA, IR, MY, MM, NG, RO, NL, GR, CZ, HU, BG, SE, DK, FI, NO, SK, HR, RS, LT, LV, EE, SI, BA, AL, MK, AM, AZ, GE, KZ, UZ, BY, KG, TJ, MN, NP, LK, KH, LA, MG, ZA, IE, PH, SO, TR, TH } from 'country-flag-icons/react/3x2';
 import React from 'react';
 
 export interface FlagProps {

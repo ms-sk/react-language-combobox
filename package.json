@@ -1,11 +1,12 @@
 {
-  "name": "react-language-picker",
-  "private": true,
-  "version": "0.0.0",
+  "name": "react-language-combobox",
+  "private": false,
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:lib": "vite build --config vite.lib.config.ts && tsc -p tsconfig.types.json",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -33,5 +34,25 @@
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.57.0",
     "vite": "^8.0.1"
+  },
+  "description": "React language picker component (library build).",
+  "main": "dist/rreact-language-combobox.cjs.js",
+  "module": "dist/react-language-combobox.es.js",
+  "types": "dist/types/index.d.ts",
+  "files": ["dist"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ms-sk/react-language-combobox.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ms-sk/react-language-combobo/issues"
+  },
+  "homepage": "https://github.com/ms-sk/react-language-combobox#readme"
+  ,
+  "publishConfig": {
+    "access": "public"
   }
 }

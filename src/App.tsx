@@ -8,7 +8,6 @@ function App() {
   return (
     <>
 
-    <div className="bg-indigo-950 min-h-screen">
  <LanguagePicker
               showFlags={true}
               useAbbreviations={false}
@@ -18,7 +17,6 @@ function App() {
               languageChanged={(lng) => i18n.changeLanguage(lng)}
             />
     <h1>{t("WelcomeToReact")}</h1>
-            </div>
     </>
   )
 }
