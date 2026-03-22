@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+.language-picker-scroll {
+	scrollbar-width: thin; /* Firefox */
+	scrollbar-color: rgba(0,0,0,0.25);
+}
+.language-picker-scroll::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+.language-picker-scroll::-webkit-scrollbar-track {
+	background: transparent;
+}
+.language-picker-scroll::-webkit-scrollbar-thumb {
+	background-color: rgba(0,0,0,0.25);
+	border-radius: 9999px;
+	border: 2px solid transparent; /* gives padding effect */
+	background-clip: content-box;
+}

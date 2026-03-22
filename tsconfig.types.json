@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "declarationDir": "dist/types",
+    "rootDir": "src",
+    "jsx": "react-jsx",
+    "lib": ["ES2020", "DOM"],
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "types": ["vite/client", "react"],
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/index.ts", "src/components/**/*"]
+}
