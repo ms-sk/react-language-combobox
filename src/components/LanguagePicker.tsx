@@ -1,6 +1,14 @@
 import  { useEffect, useRef, useState } from 'react';
 import Flag from './Flag';
 
+export const defaultTheme: LanguagePickerTheme = {
+    container: 'inline-block relative',
+    button: 'focus:outline-0 bg-white flex border rounded items-center gap-2 px-3 py-1',
+    list: 'absolute mt-1 left-0 z-50 bg-white border border-gray-200 rounded p-1 list-none shadow-lg max-h-60 overflow-y-auto min-w-full w-max max-w-[90vw] language-picker-scroll',
+    item: 'flex items-center gap-2 my-1 py-1 px-2 rounded hover:bg-gray-50 focus:outline-0 focus:bg-gray-100 cursor-pointer',
+    selectedItem: 'flex items-center gap-2 my-1 py-1 px-2 rounded focus:bg-gray-100 focus:outline-none cursor-pointer'
+};
+
 export function LanguagePicker(properties : LanguagePickerProperties){
     const languages = properties.languages ?? [];
     const initial = properties.defaultLanguage ?? 'en';
@@ -11,6 +19,7 @@ export function LanguagePicker(properties : LanguagePickerProperties){
     const [open, setOpen] = useState(false);
     const containerRef = useRef<HTMLDivElement | null>(null);
     const buttonRef = useRef<HTMLButtonElement | null>(null);
+    const theme = properties.theme ?? defaultTheme;
 
     useEffect(() => {
         function onDoc(e: MouseEvent){
@@ -48,29 +57,28 @@ export function LanguagePicker(properties : LanguagePickerProperties){
     const currentLabel = useAbbreviations ? selected : new Intl.DisplayNames(displayLocale ?? selected, { type: 'language' }).of(selected);
 
     return (
-        <div ref={containerRef} className="inline-block relative">
+        <div ref={containerRef} className={`${theme.container} ${properties.classNames ?? ''}`}>
             <button
                 ref={buttonRef}
                 type="button"
                 aria-haspopup="listbox"
                 aria-expanded={open}
-                onClick={(e) => {
+                onClick={() => {
                     setOpen(s => !s)
                 }}
                 onKeyDown={(e) => { if(e.key === 'ArrowDown'){ e.preventDefault(); setOpen(true); } }}
-                className="flex border rounded items-center gap-2"
+                className={theme.button}
             >
                 {showFlags && <Flag language={selected} className="ml-1 mr-1 w-5 h-3" title={selected} />}
-                <span className="">{currentLabel}</span>
+                <span className="text-left w-35">{currentLabel}</span>
                 <span aria-hidden className="ml-1">▾</span>
             </button>
 
             {open && (
-                <div className='overflow-y-visible h-500'>
                 <ul
                     role="listbox"
                     aria-label="Language selector"
-                    className="absolute mt-1 left-0 z-50 bg-white border border-gray-200 rounded p-1 list-none shadow-lg max-h-60 overflow-y-auto"
+                    className={theme.list}
                 >
                     {languages.map(l => {
                         const label = useAbbreviations ? l : new Intl.DisplayNames(displayLocale ?? l, { type: 'language' }).of(l);
@@ -95,15 +103,15 @@ export function LanguagePicker(properties : LanguagePickerProperties){
                                         if(prev) prev.focus();
                                     }
                                 }}
-                                className={`flex items-center gap-2 px-2 py-1 cursor-pointer ${isSelected ? 'bg-gray-100' : 'hover:bg-gray-50'}`}
+                                className={`${isSelected ? theme.selectedItem : theme.item}`}
                             >
                                  {showFlags && <Flag language={l} className="w-5 h-3" />}
-                                <span>{label}</span>
+                                <span className="whitespace-nowrap w-full">{label}</span>
+                                {isSelected && <span className='text-right'>✓</span>}
                             </li>
                         );
                     })}
                 </ul>
-                </div>
             )}
         </div>
     );
@@ -117,4 +125,13 @@ export interface LanguagePickerProperties{
     useAbbreviations?: boolean
     showFlags? : boolean;
     showEnglishNames? : boolean;
+    theme? : LanguagePickerTheme;
+}
+
+export interface LanguagePickerTheme{
+    container?: string;
+    button?: string;
+    list?: string;
+    item?: string;
+    selectedItem?: string;
 }
