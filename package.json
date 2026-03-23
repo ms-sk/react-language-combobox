@@ -48,7 +48,7 @@
     "type": "git",
     "url": "git+https://github.com/ms-sk/react-language-combobox.git"
   },
-  "keywords": [],
+  "keywords": ["react","language","combobox","picker","component"],
   "author": "",
   "license": "ISC",
   "bugs": {
