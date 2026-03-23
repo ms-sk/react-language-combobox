@@ -3,10 +3,18 @@ import Flag from './Flag';
 
 export const defaultTheme: LanguagePickerTheme = {
     container: 'inline-block relative',
-    button: 'focus:outline-0 bg-white flex border rounded items-center gap-2 px-3 py-1',
-    list: 'absolute mt-1 left-0 z-50 bg-white border border-gray-200 rounded p-1 list-none shadow-lg max-h-60 overflow-y-auto min-w-full w-max max-w-[90vw] language-picker-scroll',
-    item: 'flex items-center gap-2 my-1 py-1 px-2 rounded hover:bg-gray-50 focus:outline-0 focus:bg-gray-100 cursor-pointer',
-    selectedItem: 'flex items-center gap-2 my-1 py-1 px-2 rounded focus:bg-gray-100 focus:outline-none cursor-pointer'
+    button: 'focus:outline-none focus:border-gray-400 bg-white text-gray-800 border border-gray-300 hover:bg-gray-50 flex rounded-lg items-center gap-2 px-3 py-1.5 transition-all',
+    list: 'absolute mt-2 left-0 z-50 bg-white border border-gray-200 rounded-lg p-1.5 list-none shadow-xl max-h-60 overflow-y-auto min-w-full w-max max-w-[90vw] language-picker-scroll',
+    item: 'flex items-center gap-2 my-1 py-2 px-3 rounded-md text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 cursor-pointer transition-all',
+    selectedItem: 'flex items-center gap-2 my-1 py-2 px-3 rounded-md bg-gray-100 text-gray-900 focus:outline-none cursor-default'
+};
+
+export const darkTheme: LanguagePickerTheme = {
+    container: 'inline-block relative',
+    button: 'focus:outline-none focus:border-slate-500 bg-slate-900 text-slate-200 border border-slate-700 hover:bg-slate-800 flex rounded-lg items-center gap-2 px-3 py-1.5 transition-all',
+    list: 'absolute mt-2 left-0 z-50 bg-slate-900 border border-slate-700 rounded-lg p-1.5 list-none shadow-2xl max-h-60 overflow-y-auto min-w-full w-max max-w-[90vw] language-picker-scroll',
+    item: 'flex items-center gap-2 my-1 py-2 px-3 rounded-md text-slate-400 hover:bg-slate-800 hover:text-slate-100 focus:outline-none focus:bg-slate-800 focus:text-slate-100 cursor-pointer transition-all',
+    selectedItem: 'flex items-center gap-2 my-1 py-2 px-3 rounded-md bg-slate-800 text-slate-100 focus:outline-none cursor-default'
 };
 
 export function LanguagePicker(properties : LanguagePickerProperties){
@@ -57,7 +65,7 @@ export function LanguagePicker(properties : LanguagePickerProperties){
     const currentLabel = useAbbreviations ? selected : new Intl.DisplayNames(displayLocale ?? selected, { type: 'language' }).of(selected);
 
     return (
-        <div ref={containerRef} className={`${theme.container} ${properties.classNames ?? ''}`}>
+        <div ref={containerRef} className={`${theme.container}`}>
             <button
                 ref={buttonRef}
                 type="button"
@@ -121,7 +129,6 @@ export interface LanguagePickerProperties{
     languages?: string[];
     defaultLanguage?: string;
     languageChanged?: (lng: string) => void;
-    classNames?: string
     useAbbreviations?: boolean
     showFlags? : boolean;
     showEnglishNames? : boolean;
