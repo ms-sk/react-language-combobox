@@ -1,7 +1,7 @@
 {
   "name": "react-language-combobox",
   "private": false,
-  "version": "1.0.6",
+  "version": "1.0.7",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -48,7 +48,13 @@
     "type": "git",
     "url": "git+https://github.com/ms-sk/react-language-combobox.git"
   },
-  "keywords": ["react","language","combobox","picker","component"],
+  "keywords": [
+    "react",
+    "language",
+    "combobox",
+    "picker",
+    "component"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
