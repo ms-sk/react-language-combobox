@@ -66,6 +66,7 @@ function App() {
           <h2 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Configuration</h2>
           <div className="space-y-3">
             {[
+              {key: "showSearchBox", label: "Show Search Box"},
               { key: "showFlags", label: "Show Flags" },
               { key: "useAbbreviations", label: "Use Abbreviations (EN, DE)" },
               { key: "showEnglishNames", label: "Show English Names" },

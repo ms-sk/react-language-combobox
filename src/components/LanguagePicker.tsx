@@ -1,12 +1,14 @@
-import  { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Flag from './Flag';
 
 export const defaultTheme: LanguagePickerTheme = {
     container: 'inline-block relative',
     button: 'focus:outline-none focus:border-gray-400 bg-white text-gray-800 border border-gray-300 hover:bg-gray-50 flex rounded-lg items-center gap-2 px-3 py-1.5 transition-all',
-    list: 'absolute mt-2 left-0 z-50 bg-white border border-gray-200 rounded-lg p-1.5 list-none shadow-xl max-h-60 overflow-y-auto min-w-full w-max max-w-[90vw] language-picker-scroll',
+    list: 'absolute left-0 z-50 bg-white border border-gray-200 rounded-lg p-1.5 list-none shadow-xl max-h-60 overflow-y-auto min-w-full w-max max-w-[90vw] language-picker-scroll',
     item: 'flex items-center gap-2 my-1 py-2 px-3 rounded-md text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 cursor-pointer transition-all',
-    selectedItem: 'flex items-center gap-2 my-1 py-2 px-3 rounded-md bg-gray-100 text-gray-900 focus:outline-none cursor-default'
+    selectedItem: 'flex items-center gap-2 my-1 py-2 px-3 rounded-md bg-gray-100 text-gray-900 focus:outline-none cursor-default',
+    searchBox: 'w-full my-1 px-3 py-2 text-sm text-gray-800 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-100 transition-all placeholder-gray-400',
+    searchBoxContainer: 'w-full'
 };
 
 export const darkTheme: LanguagePickerTheme = {
@@ -17,7 +19,7 @@ export const darkTheme: LanguagePickerTheme = {
     selectedItem: 'flex items-center gap-2 my-1 py-2 px-3 rounded-md bg-slate-800 text-slate-100 focus:outline-none cursor-default'
 };
 
-export function LanguagePicker(properties : LanguagePickerProperties){
+export function LanguagePicker(properties: LanguagePickerProperties) {
     const languages = properties.languages ?? [];
     const initial = properties.defaultLanguage ?? 'en';
     const useAbbreviations = properties.useAbbreviations ?? false;
@@ -28,11 +30,12 @@ export function LanguagePicker(properties : LanguagePickerProperties){
     const containerRef = useRef<HTMLDivElement | null>(null);
     const buttonRef = useRef<HTMLButtonElement | null>(null);
     const theme = properties.theme ?? defaultTheme;
+    const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
-        function onDoc(e: MouseEvent){
-            if(!containerRef.current) return;
-            if(!containerRef.current.contains(e.target as Node)) setOpen(false);
+        function onDoc(e: MouseEvent) {
+            if (!containerRef.current) return;
+            if (!containerRef.current.contains(e.target as Node)) setOpen(false);
         }
         document.addEventListener('click', onDoc);
         return () => document.removeEventListener('click', onDoc);
@@ -44,8 +47,8 @@ export function LanguagePicker(properties : LanguagePickerProperties){
     }, [properties.defaultLanguage]);
 
     useEffect(() => {
-        if(open){
-            const first = containerRef.current?.querySelector('[role="option"]') as HTMLElement | null;
+        if (open) {
+            const first = properties.showSearchBox ? (containerRef.current as HTMLElement).querySelector("input") as HTMLElement | null : containerRef.current?.querySelector('[role="option"]') as HTMLElement | null;
             first?.focus();
         } else {
             // when closing, return focus to the button
@@ -53,16 +56,17 @@ export function LanguagePicker(properties : LanguagePickerProperties){
         }
     }, [open]);
 
-    function selectLanguage(lng: string){
+    function selectLanguage(lng: string) {
         setSelected(lng);
         properties.languageChanged?.(lng);
+        setSearchQuery("");
         setOpen(false);
     }
 
-    if(languages.length === 0) return null;
+    if (languages.length === 0) return null;
 
     const displayLocale = showEnglishNames ? 'en' : selected;
-    const currentLabel = useAbbreviations ? selected : new Intl.DisplayNames(displayLocale ?? selected, { type: 'language' }).of(selected);
+    const currentLabel = useAbbreviations ? selected.toUpperCase() : new Intl.DisplayNames(displayLocale ?? selected, { type: 'language' }).of(selected);
 
     return (
         <div ref={containerRef} className={`${theme.container}`}>
@@ -72,9 +76,10 @@ export function LanguagePicker(properties : LanguagePickerProperties){
                 aria-haspopup="listbox"
                 aria-expanded={open}
                 onClick={() => {
+                    setSearchQuery("")
                     setOpen(s => !s)
                 }}
-                onKeyDown={(e) => { if(e.key === 'ArrowDown'){ e.preventDefault(); setOpen(true); } }}
+                onKeyDown={(e) => { if (e.key === 'ArrowDown') { e.preventDefault(); setOpen(true); } }}
                 className={theme.button}
             >
                 {showFlags && <Flag language={selected} className="ml-1 mr-1 w-5 h-3" title={selected} />}
@@ -83,62 +88,86 @@ export function LanguagePicker(properties : LanguagePickerProperties){
             </button>
 
             {open && (
-                <ul
-                    role="listbox"
-                    aria-label="Language selector"
-                    className={theme.list}
-                >
-                    {languages.map(l => {
-                        const label = useAbbreviations ? l : new Intl.DisplayNames(displayLocale ?? l, { type: 'language' }).of(l);
-                        const isSelected = l === selected;
-                        return (
-                            <li
-                                key={l}
-                                role="option"
-                                aria-selected={isSelected}
+                <>
+                    {properties.showSearchBox && (
+                        <div className={theme.searchBoxContainer}>
+                            <input type='text'
                                 tabIndex={0}
-                                onClick={() => selectLanguage(l)}
-                                onKeyDown={(e: React.KeyboardEvent<HTMLLIElement>) => { 
-                                    if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectLanguage(l); }
-                                    if(e.key === 'ArrowDown'){
+                                className={theme.searchBox}
+                                value={searchQuery}
+                                onChange={(e) => {
+                                    setSearchQuery(e.target.value)
+                                }}
+                                onKeyDown={e => {
+                                    if(e.key == "Enter"){
                                         e.preventDefault();
-                                        const next = (e.currentTarget as HTMLElement).nextElementSibling as HTMLElement | null;
-                                        if(next) next.focus();
-                                    }
-                                    if(e.key === 'ArrowUp'){
-                                        e.preventDefault();
-                                        const prev = (e.currentTarget as HTMLElement).previousElementSibling as HTMLElement | null;
-                                        if(prev) prev.focus();
+                                        selectLanguage(languages.filter(language => new Intl.DisplayNames(displayLocale, { type: 'language' }).of(language)?.toLowerCase().includes(searchQuery.toLowerCase()))[0] ?? selected)
                                     }
                                 }}
-                                className={`${isSelected ? theme.selectedItem : theme.item}`}
-                            >
-                                 {showFlags && <Flag language={l} className="w-5 h-3" />}
-                                <span className="whitespace-nowrap w-full">{label}</span>
-                                {isSelected && <span className='text-right'>✓</span>}
-                            </li>
-                        );
-                    })}
-                </ul>
+                                placeholder={properties.searchBoxPlaceholder}></input>
+                        </div>)}
+                    <ul
+                        role="listbox"
+                        aria-label="Language Selector"
+                        className={theme.list}
+                    >
+                        {languages.filter(language => new Intl.DisplayNames(displayLocale, { type: 'language' }).of(language)?.toLowerCase().includes(searchQuery.toLowerCase())).map(l => {
+                            const label = useAbbreviations ? l.toUpperCase() : new Intl.DisplayNames(displayLocale ?? l, { type: 'language' }).of(l);
+                            const isSelected = l === selected;
+                            return (
+                                <li
+                                    key={l}
+                                    role="option"
+                                    aria-selected={isSelected}
+                                    tabIndex={0}
+                                    aria-label={label}
+                                    onClick={() => selectLanguage(l)}
+                                    onKeyDown={(e: React.KeyboardEvent<HTMLLIElement>) => {
+                                        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectLanguage(l); }
+                                        if (e.key === 'ArrowDown') {
+                                            e.preventDefault();
+                                            const next = (e.currentTarget as HTMLElement).nextElementSibling as HTMLElement | null;
+                                            if (next) next.focus();
+                                        }
+                                        if (e.key === 'ArrowUp') {
+                                            e.preventDefault();
+                                            const prev = (e.currentTarget as HTMLElement).previousElementSibling as HTMLElement | null;
+                                            if (prev) prev.focus();
+                                        }
+                                    }}
+                                    className={`${isSelected ? theme.selectedItem : theme.item}`}
+                                >
+                                    {showFlags && <Flag language={l} className="w-5 h-3" />}
+                                    <span className="whitespace-nowrap w-full">{label}</span>
+                                    {isSelected && <span className='text-right'>✓</span>}
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </>
             )}
         </div>
     );
 }
 
-export interface LanguagePickerProperties{
+export interface LanguagePickerProperties {
     languages?: string[];
     defaultLanguage?: string;
     languageChanged?: (lng: string) => void;
     useAbbreviations?: boolean
-    showFlags? : boolean;
-    showEnglishNames? : boolean;
-    theme? : LanguagePickerTheme;
+    showFlags?: boolean;
+    showEnglishNames?: boolean;
+    theme?: LanguagePickerTheme;
+    searchBoxPlaceholder?: string;
+    showSearchBox?: boolean;
 }
 
-export interface LanguagePickerTheme{
+export interface LanguagePickerTheme {
     container?: string;
     button?: string;
     list?: string;
     item?: string;
     selectedItem?: string;
+    searchBox?: string;
+    searchBoxContainer?: string
 }
