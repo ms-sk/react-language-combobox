@@ -32,7 +32,7 @@ function App(){
 				showFlags={true}
 				showEnglishNames={true}
 				languageChanged={(lng) => i18n.changeLanguage(lng)}
-                searchBoxPlaceholder={i18n.t("SearchPlaceHolder")}/>
+				searchBoxPlaceholder={i18n.t("SearchPlaceHolder")}/>
 
 			<h1>{t('WelcomeToReact')}</h1>
 	)
@@ -51,6 +51,7 @@ Available exports
 
 - `LanguagePicker` — main component
 - `defaultTheme` — default theme class names (Tailwind-friendly)
+- `darkTheme` - dark theme (Tailwind-friendly)
 - Types: `LanguagePickerProperties`, `LanguagePickerTheme`
 
 Props / Options
@@ -66,7 +67,7 @@ The component accepts a `LanguagePickerProperties` object with these fields:
 - `showFlags?: boolean` — when true, shows flag icons next to languages (default: `true`).
 - `showEnglishNames?: boolean` — when true, display language names in English rather than the selected locale.
 - `theme?: LanguagePickerTheme` — override default classes for styling. See below.
-
+- `searchBoxPlaceholder : string` - placeholder of the search box.
 Theme
 -----
 
@@ -77,6 +78,8 @@ Theme
 - `list` — classes for the dropdown list (default includes absolute positioning, border, max-height and scrolling behavior).
 - `item` — classes for each list item (hover/focus state classes recommended).
 - `selectedItem` — classes applied to the selected list item.
+- `searchBox` - classes applied to the searchbox.
+- `searchBoxContainer` - classes applied to the searchbox container.
 
 Accessibility
 -------------
