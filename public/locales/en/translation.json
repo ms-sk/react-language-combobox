@@ -1,3 +1,4 @@
 {
-  "WelcomeToReact": "Welcome to react using react-i18next"
+  "WelcomeToReact": "Welcome to react using react-i18next",
+  "SearchPlaceHolder":"Search..."
 }

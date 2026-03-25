@@ -34,6 +34,7 @@ function App() {
             <div className="p-6 bg-gray-50 rounded-2xl border border-dashed border-gray-200 flex justify-center">
               <LanguagePicker
                 {...config}
+                searchBoxPlaceholder={i18n.t("SearchPlaceHolder")}
                 languages={["en", "fr", "de", "es"]}
                 defaultLanguage={i18n.resolvedLanguage || 'en'}
                 languageChanged={(lng) => i18n.changeLanguage(lng)}
@@ -50,6 +51,7 @@ function App() {
                 defaultLanguage={i18n.resolvedLanguage || 'en'}
                 languageChanged={(lng) => i18n.changeLanguage(lng)}
                 theme={darkTheme}
+                searchBoxPlaceholder={i18n.t("SearchPlaceHolder")}
               />
             </div>
           </div>
@@ -66,6 +68,7 @@ function App() {
           <h2 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Configuration</h2>
           <div className="space-y-3">
             {[
+              {key: "showSearchBox", label: "Show Search Box"},
               { key: "showFlags", label: "Show Flags" },
               { key: "useAbbreviations", label: "Use Abbreviations (EN, DE)" },
               { key: "showEnglishNames", label: "Show English Names" },

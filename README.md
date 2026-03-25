@@ -31,7 +31,8 @@ function App(){
 				defaultLanguage={i18n.resolvedLanguage}
 				showFlags={true}
 				showEnglishNames={true}
-				languageChanged={(lng) => i18n.changeLanguage(lng)} />
+				languageChanged={(lng) => i18n.changeLanguage(lng)}
+                searchBoxPlaceholder={i18n.t("SearchPlaceHolder")}/>
 
 			<h1>{t('WelcomeToReact')}</h1>
 	)
