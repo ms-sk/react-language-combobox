@@ -53,7 +53,8 @@
     "language",
     "combobox",
     "picker",
-    "component"
+    "component",
+    "i18n"
   ],
   "author": "",
   "license": "ISC",
