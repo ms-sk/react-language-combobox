@@ -102,14 +102,20 @@ export function LanguagePicker(properties: LanguagePickerProperties) {
                                     setSearchQuery(e.target.value)
                                 }}
                                 onKeyDown={e => {
-                                    if(e.key == "Enter"){
+                                    if (e.key == "Enter") {
                                         e.preventDefault();
                                         selectLanguage(languages.filter(language => new Intl.DisplayNames(displayLocale, { type: 'language' }).of(language)?.toLowerCase().includes(searchQuery.toLowerCase()))[0] ?? selected)
                                     }
-                                    
-                                    if(e.key == "Escape"){
+
+                                    if (e.key == "Escape") {
                                         e.preventDefault();
                                         setOpen(!open);
+                                    }
+
+                                    if (e.key === 'ArrowDown') {
+                                        e.preventDefault();
+                                        const next = (e.currentTarget as HTMLElement).parentElement?.nextSibling?.childNodes[0] as HTMLElement | null;
+                                        if (next) next.focus();
                                     }
                                 }}
                                 placeholder={properties?.searchBoxPlaceholder || "Search..."}></input>

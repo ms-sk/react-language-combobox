@@ -32,6 +32,7 @@ function App(){
 				showFlags={true}
 				showEnglishNames={true}
 				languageChanged={(lng) => i18n.changeLanguage(lng)}
+				showSearchBox={true}
 				searchBoxPlaceholder={i18n.t("SearchPlaceHolder")}/>
 
 			<h1>{t('WelcomeToReact')}</h1>
