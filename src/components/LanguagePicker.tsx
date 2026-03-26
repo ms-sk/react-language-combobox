@@ -146,7 +146,12 @@ export function LanguagePicker(properties: LanguagePickerProperties) {
                                         if (e.key === 'ArrowUp') {
                                             e.preventDefault();
                                             const prev = (e.currentTarget as HTMLElement).previousElementSibling as HTMLElement | null;
-                                            if (prev) prev.focus();
+                                            if (prev) {
+                                                prev.focus();
+                                            } else {
+                                                const searchBox = e.currentTarget.parentElement?.previousElementSibling?.childNodes[0] as HTMLElement;
+                                                if (searchBox) searchBox.focus();
+                                            }
                                         }
                                     }}
                                     className={`${isSelected ? theme.selectedItem : theme.item}`}
