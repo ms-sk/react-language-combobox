@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build --outDir dist-demo",
     "build:lib": "vite build --config vite.lib.config.ts && tsc -p tsconfig.types.json",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist-demo"
   },
   "peerDependencies": {
     "@tailwindcss/vite": "^4.2.2",
