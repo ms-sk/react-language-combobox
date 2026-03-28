@@ -22,7 +22,6 @@ function getLanguageLabel(code: string, selected: string, mode: NameDisplayMode)
 }
 
 export function LanguageComboBox(properties: LanguageComboBoxProperties) {
-    // Fallback-Werte und Destructuring
     const {
         languages = ['en'],
         defaultLanguage = 'en',
@@ -41,7 +40,6 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const buttonRef = useRef<HTMLButtonElement | null>(null);
 
-    // Klick außerhalb zum Schließen
     useEffect(() => {
         function onDoc(e: MouseEvent) {
             if (!containerRef.current?.contains(e.target as Node)) setOpen(false);
@@ -50,12 +48,10 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
         return () => document.removeEventListener('click', onDoc);
     }, []);
 
-    // Synchronisation bei Prop-Änderung
     useEffect(() => {
         setSelected(defaultLanguage);
     }, [defaultLanguage]);
 
-    // Fokus-Management
     useEffect(() => {
         if (open) {
             const firstElement = showSearchBox 
@@ -74,10 +70,8 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
         setOpen(false);
     };
 
-    // Zentrale Label-Logik für diese Instanz
     const getLabel = (code: string) => getLanguageLabel(code, selected, nameDisplayMode);
 
-    // Gefilterte Liste (Memoized für Performance)
     const filteredLanguages = useMemo(() => {
         const list = languages.length > 0 ? languages : ['en'];
         return list.filter(lng => 
