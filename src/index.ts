@@ -14,3 +14,5 @@ export type { LanguageComboBoxClass as LanguagePickerTheme } from './components/
 
 export { darkTheme } from './themes/darkTheme';
 export { defaultTheme } from './themes/defaultTheme';
+
+export type { PRESETS } from "./components/Presets"; 

@@ -22,18 +22,21 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { useTranslation } from 'react-i18next'
 import { LanguageComboBox } from 'react-language-combobox'
+import { PRESETS } from "./components/Presets";
 
 import './i18n' // make sure i18n is initialized
 
 function App(){
 	const { t, i18n } = useTranslation();
 
-	return (
+	return (              
+	
 			<LanguageComboBox
 				languages={[ 'en', 'fr', 'de', 'es' ]}
 				defaultLanguage={i18n.resolvedLanguage}
 				showFlags={true}
 				nameDisplayMode="english"
+                languages={PRESETS.WORLD_TOP_20}
 				languageChanged={(lng) => i18n.changeLanguage(lng)}
 				showSearchBox={true}
 				searchBoxPlaceholder={i18n.t("SearchPlaceHolder")}/>
