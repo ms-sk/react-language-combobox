@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { darkTheme, LanguageComboBox, type LanguageComboBoxProperties } from "./components/LanguageComboBox";
+import type { LanguageComboBoxProperties } from "./components/LanguageComboBoxProperties";
+import { LanguageComboBox } from "./components/LanguageComboBox";
+import { darkTheme } from "./themes/darkTheme";
+
 
 function App() {
   const { t, i18n } = useTranslation();
   const [isReady, setIsReady] = useState(false);
   const [config, setConfig] = useState<Partial<LanguageComboBoxProperties>>({
+    showSearchBox : false,
     showFlags: true,
-    useAbbreviations: false,
-    showEnglishNames: true,
+    nameDisplayMode: "english"
   });
 
   useEffect(() => {
@@ -70,8 +73,6 @@ function App() {
             {[
               {key: "showSearchBox", label: "Show Search Box"},
               { key: "showFlags", label: "Show Flags" },
-              { key: "useAbbreviations", label: "Use Abbreviations (EN, DE)" },
-              { key: "showEnglishNames", label: "Show English Names" },
             ].map((opt) => (
               <label 
                 key={opt.key} 
@@ -87,6 +88,26 @@ function App() {
               </label>
             ))}
           </div>
+          {/* Name Display Mode Selection */}
+<div className="mt-6 pt-6 border-t border-gray-100">
+  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Display Mode</p>
+  <div className="grid grid-cols-1 gap-2 p-1 bg-gray-50 rounded-2xl border border-gray-100">
+    {(['english', 'native', 'abbreviation','current'] as const).map((mode) => (
+      <button
+        key={mode}
+        onClick={() => setConfig(prev => ({ ...prev, nameDisplayMode: mode }))}
+        className={`
+          px-4 py-2 text-sm font-medium rounded-xl transition-all capitalize
+          ${config.nameDisplayMode === mode 
+            ? 'bg-white text-blue-600 shadow-sm border border-gray-100' 
+            : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'}
+        `}
+      >
+        {mode}
+      </button>
+    ))}
+  </div>
+</div>
         </div>
       </div>
 

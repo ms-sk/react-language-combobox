@@ -1,0 +1,1 @@
+export type NameDisplayMode = 'english' | 'native' | 'current' | 'abbreviation';

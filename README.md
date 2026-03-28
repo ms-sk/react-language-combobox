@@ -33,7 +33,7 @@ function App(){
 				languages={[ 'en', 'fr', 'de', 'es' ]}
 				defaultLanguage={i18n.resolvedLanguage}
 				showFlags={true}
-				showEnglishNames={true}
+				nameDisplayMode="english"
 				languageChanged={(lng) => i18n.changeLanguage(lng)}
 				showSearchBox={true}
 				searchBoxPlaceholder={i18n.t("SearchPlaceHolder")}/>
@@ -56,7 +56,7 @@ Available exports
 - `LanguageComboBox` — main component
 - `defaultTheme` — default theme class names (Tailwind-friendly)
 - `darkTheme` - dark theme (Tailwind-friendly)
-- Types: `LanguageComboBoxProperties`, `LanguageComboBoxTheme`
+- Types: `LanguageComboBoxProperties`, `LanguageComboBoxTheme`, `NameDisplayMode`
 
 Props / Options
 ---------------
@@ -66,10 +66,12 @@ The component accepts a `LanguageComboBoxProperties` object with these fields:
 - `languages?: string[]` — array of language tags (e.g. `['en','de','fr']`). Required for rendering; if empty the component returns `['en']`.
 - `defaultLanguage?: string` — initial selected language (default: `en`).
 - `languageChanged?: (lng: string) => void` — callback invoked when user selects a language.
-- `classNames?: string` — additional class names applied to the root container.
-- `useAbbreviations?: boolean` — when true, display language codes (`en`) instead of localized names.
 - `showFlags?: boolean` — when true, shows flag icons next to languages (default: `true`).
-- `showEnglishNames?: boolean` — when true, display language names in English rather than the selected locale.
+- nameDisplayMode: NameDisplayMode — (Required) Defines how language names are rendered:
+-- 'english': Always show names in English (e.g., "German").
+-- 'native': Show each language in its own script (e.g., "Deutsch").
+-- 'current': Show names in the currently selected language.
+-- 'abbreviation': Show the ISO code (e.g., "DE").
 - `theme?: LanguageComboBoxTheme` — override default classes for styling. See below.
 - `showSearchBox: boolean` — Enables a search filter inside the dropdown.
 - `searchBoxPlaceholder : string` — placeholder of the search box.
@@ -88,11 +90,14 @@ Theme
 
 Accessibility
 -------------
+- ARIA Roles: Uses listbox and option roles for screen readers.
+- The component uses ARIA roles (`listbox` / `option`) and keyboard navigation (ArrowUp/ArrowDown, Enter/Space to select).
 
-The component uses ARIA roles (`listbox` / `option`) and keyboard navigation (ArrowUp/ArrowDown, Enter/Space to select). When the list is closed focus returns to the toggle button.
+- Focus Management: Focus automatically shifts to the search box (if enabled) or the first item when opened, and returns to the toggle button when closed.
 
 Notes
 -----
 
 - The library externals `react` and `react-dom` to avoid bundling React into your app. Ensure those are installed in your host project.
 - Flag icons come from the `country-flag-icons` package — include it as a dependency in your project (this package already lists it as a dependency).
+- Uses Intl.DisplayNames for localization. Ensure your target environment supports this (modern browsers and Node.js 14.x+).
