@@ -68,10 +68,10 @@ The component accepts a `LanguageComboBoxProperties` object with these fields:
 - `languageChanged?: (lng: string) => void` — callback invoked when user selects a language.
 - `showFlags?: boolean` — when true, shows flag icons next to languages (default: `true`).
 - nameDisplayMode: NameDisplayMode — (Required) Defines how language names are rendered:
--- 'english': Always show names in English (e.g., "German").
--- 'native': Show each language in its own script (e.g., "Deutsch").
--- 'current': Show names in the currently selected language.
--- 'abbreviation': Show the ISO code (e.g., "DE").
+    - 'english': Always show names in English (e.g., "German").
+    - 'native': Show each language in its own script (e.g., "Deutsch").
+    - 'current': Show names in the currently selected language.
+    - 'abbreviation': Show the ISO code (e.g., "DE").
 - `theme?: LanguageComboBoxTheme` — override default classes for styling. See below.
 - `showSearchBox: boolean` — Enables a search filter inside the dropdown.
 - `searchBoxPlaceholder : string` — placeholder of the search box.
