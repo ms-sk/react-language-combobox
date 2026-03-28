@@ -32,12 +32,13 @@
     "eslint": "^9.39.4",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
+    "gh-pages": "^6.3.0",
     "globals": "^17.4.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.57.0",
     "vite": "^8.0.1"
   },
-  "description": "React language picker component (library build).",
+  "description": "React language ComboBox component (library build).",
   "main": "dist/react-language-combobox.cjs.js",
   "module": "dist/react-language-combobox.es.js",
   "types": "dist/types/index.d.ts",
@@ -50,18 +51,32 @@
   },
   "keywords": [
     "react",
-    "language",
+    "language-picker",
+    "language-selector",
+    "i18n",
+    "i18next",
+    "localization",
     "combobox",
-    "picker",
-    "component",
-    "i18n"
+    "tailwind-css",
+    "accessibility",
+    "i18next-integration",
+    "aria",
+    "flags",
+    "translation",
+    "ui-component",
+    "typescript",
+    "lightweight-picker",
+    "lightweight",
+    "keyboard-navigation",
+    "accessible-combobox",
+    "almost headless"
   ],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ms-sk/react-language-combobo/issues"
   },
-  "homepage": "https://github.com/ms-sk/react-language-combobox#readme",
+  "homepage": "https://ms-sk.github.io/react-language-combobox/",
   "publishConfig": {
     "access": "public"
   }

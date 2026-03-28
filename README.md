@@ -1,6 +1,6 @@
 # react-language-combobox
 
-> Small, accessible React language picker component with optional flags and customizable theme classes.
+> Small, accessible React language ComboBox component with optional flags and customizable theme classes.
 
 Install
 -------
@@ -18,7 +18,7 @@ Usage
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { useTranslation } from 'react-i18next'
-import { LanguagePicker } from 'react-language-picker'
+import { LanguageComboBox } from 'react-language-combobox'
 
 import './i18n' // make sure i18n is initialized
 
@@ -26,7 +26,7 @@ function App(){
 	const { t, i18n } = useTranslation();
 
 	return (
-			<LanguagePicker
+			<LanguageComboBox
 				languages={[ 'en', 'fr', 'de', 'es' ]}
 				defaultLanguage={i18n.resolvedLanguage}
 				showFlags={true}
@@ -50,29 +50,30 @@ function App(){
 Available exports
 -----------------
 
-- `LanguagePicker` — main component
+- `LanguageComboBox` — main component
 - `defaultTheme` — default theme class names (Tailwind-friendly)
 - `darkTheme` - dark theme (Tailwind-friendly)
-- Types: `LanguagePickerProperties`, `LanguagePickerTheme`
+- Types: `LanguageComboBoxProperties`, `LanguageComboBoxTheme`
 
 Props / Options
 ---------------
 
-The component accepts a `LanguagePickerProperties` object with these fields:
+The component accepts a `LanguageComboBoxProperties` object with these fields:
 
-- `languages?: string[]` — array of language tags (e.g. `['en','de','fr']`). Required for rendering; if empty the component returns `null`.
+- `languages?: string[]` — array of language tags (e.g. `['en','de','fr']`). Required for rendering; if empty the component returns `['en']`.
 - `defaultLanguage?: string` — initial selected language (default: `en`).
 - `languageChanged?: (lng: string) => void` — callback invoked when user selects a language.
 - `classNames?: string` — additional class names applied to the root container.
 - `useAbbreviations?: boolean` — when true, display language codes (`en`) instead of localized names.
 - `showFlags?: boolean` — when true, shows flag icons next to languages (default: `true`).
 - `showEnglishNames?: boolean` — when true, display language names in English rather than the selected locale.
-- `theme?: LanguagePickerTheme` — override default classes for styling. See below.
-- `searchBoxPlaceholder : string` - placeholder of the search box.
+- `theme?: LanguageComboBoxTheme` — override default classes for styling. See below.
+- `showSearchBox: boolean` — Enables a search filter inside the dropdown.
+- `searchBoxPlaceholder : string` — placeholder of the search box.
 Theme
 -----
 
-`LanguagePickerTheme` contains these optional string fields (class names are appended directly, so Tailwind or plain CSS works):
+`LanguageComboBoxTheme` contains these optional string fields (class names are appended directly, so Tailwind or plain CSS works):
 
 - `container` — wrapper container classes (default: `inline-block relative`).
 - `button` — classes for the toggle button (default includes rounded border, padding, and layout).

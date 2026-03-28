@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { darkTheme, LanguagePicker, type LanguagePickerProperties } from "./components/LanguagePicker";
+import { darkTheme, LanguageComboBox, type LanguageComboBoxProperties } from "./components/LanguageComboBox";
 
 function App() {
   const { t, i18n } = useTranslation();
   const [isReady, setIsReady] = useState(false);
-  const [config, setConfig] = useState<Partial<LanguagePickerProperties>>({
+  const [config, setConfig] = useState<Partial<LanguageComboBoxProperties>>({
     showFlags: true,
     useAbbreviations: false,
     showEnglishNames: true,
@@ -18,7 +18,7 @@ function App() {
 
   if (!isReady) return <div className="p-10 font-sans">Loading...</div>;
 
-  const toggle = (key: keyof LanguagePickerProperties) => {
+  const toggle = (key: keyof LanguageComboBoxProperties) => {
     setConfig(prev => ({ ...prev, [key]: !prev[key] }));
   };
 
@@ -32,7 +32,7 @@ function App() {
           <div className="space-y-3">
             <p className="text-xs font-semibold text-gray-500">Default Light Theme</p>
             <div className="p-6 bg-gray-50 rounded-2xl border border-dashed border-gray-200 flex justify-center">
-              <LanguagePicker
+              <LanguageComboBox
                 {...config}
                 searchBoxPlaceholder={i18n.t("SearchPlaceHolder")}
                 languages={["en", "fr", "de", "es"]}
@@ -45,7 +45,7 @@ function App() {
           <div className="space-y-3">
             <p className="text-xs font-semibold text-gray-500">Custom Dark Theme</p>
             <div className="p-6 bg-slate-950 rounded-2xl flex justify-center shadow-inner">
-              <LanguagePicker 
+              <LanguageComboBox 
                 {...config}
                 languages={["en", "fr", "de", "es"]}
                 defaultLanguage={i18n.resolvedLanguage || 'en'}
@@ -80,8 +80,8 @@ function App() {
                 <span className="text-sm font-medium text-gray-700 group-hover:text-blue-700">{opt.label}</span>
                 <input
                   type="checkbox"
-                  checked={!!config[opt.key as keyof LanguagePickerProperties]}
-                  onChange={() => toggle(opt.key as keyof LanguagePickerProperties)}
+                  checked={!!config[opt.key as keyof LanguageComboBoxProperties]}
+                  onChange={() => toggle(opt.key as keyof LanguageComboBoxProperties)}
                   className="w-5 h-5 accent-blue-600 rounded"
                 />
               </label>
