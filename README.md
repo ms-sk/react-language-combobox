@@ -32,7 +32,6 @@ function App(){
 	return (              
 	
 			<LanguageComboBox
-				languages={[ 'en', 'fr', 'de', 'es' ]}
 				defaultLanguage={i18n.resolvedLanguage}
 				showFlags={true}
 				nameDisplayMode="english"
