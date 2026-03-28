@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import type { LanguageComboBoxProperties } from "./components/LanguageComboBoxProperties";
 import { LanguageComboBox } from "./components/LanguageComboBox";
 import { darkTheme } from "./themes/darkTheme";
+import { PRESETS } from "./components/Presets";
 
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
               <LanguageComboBox
                 {...config}
                 searchBoxPlaceholder={i18n.t("SearchPlaceHolder")}
-                languages={["en", "fr", "de", "es"]}
+                languages={PRESETS.WORLD_TOP_20}
                 defaultLanguage={i18n.resolvedLanguage || 'en'}
                 languageChanged={(lng) => i18n.changeLanguage(lng)}
               />
@@ -50,7 +51,7 @@ function App() {
             <div className="p-6 bg-slate-950 rounded-2xl flex justify-center shadow-inner">
               <LanguageComboBox 
                 {...config}
-                languages={["en", "fr", "de", "es"]}
+                languages={["404 FLAG","en", "fr", "de", "es"]}
                 defaultLanguage={i18n.resolvedLanguage || 'en'}
                 languageChanged={(lng) => i18n.changeLanguage(lng)}
                 theme={darkTheme}

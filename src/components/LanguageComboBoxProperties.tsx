@@ -1,4 +1,4 @@
-import type { LanguageComboBoxTheme } from "./LanguagComboBoxTheme";
+import type { LanguageComboBoxClass } from "./LanguagComboBoxClass";
 import type { NameDisplayMode } from "./NameDisplayMode";
 
 
@@ -8,7 +8,7 @@ export interface LanguageComboBoxProperties {
     languageChanged?: (lng: string) => void;
     nameDisplayMode?: NameDisplayMode;
     showFlags?: boolean;
-    theme?: LanguageComboBoxTheme;
+    theme?: LanguageComboBoxClass;
     searchBoxPlaceholder?: string;
     showSearchBox?: boolean;
 }

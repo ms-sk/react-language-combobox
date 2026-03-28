@@ -86,7 +86,7 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
     }, [languages, searchQuery, selected, nameDisplayMode]);
 
     return (
-        <div ref={containerRef} className={`${theme.container}`}>
+        <div ref={containerRef} className={`${theme.containerClass}`}>
             <button
                 ref={buttonRef}
                 type="button"
@@ -97,9 +97,9 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
                     setOpen(s => !s);
                 }}
                 onKeyDown={(e) => { if (e.key === 'ArrowDown') { e.preventDefault(); setOpen(true); } }}
-                className={theme.button}
+                className={theme.buttonClass}
             >
-                {showFlags && <Flag language={selected} className="ml-1 mr-1 w-5 h-3" title={selected} />}
+                {showFlags && <Flag language={selected} className={theme.FlagClass} title={selected} />}
                 <span className="text-left w-35">{getLabel(selected)}</span>
                 <span aria-hidden className="ml-1">▾</span>
             </button>
@@ -107,11 +107,11 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
             {open && (
                 <>
                     {showSearchBox && (
-                        <div className={theme.searchBoxContainer}>
+                        <div className={theme.searchBoxContainerClass}>
                             <input 
                                 type='text'
                                 tabIndex={0}
-                                className={theme.searchBox}
+                                className={theme.searchBoxClass}
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 onKeyDown={e => {
@@ -129,7 +129,7 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
                             />
                         </div>
                     )}
-                    <ul role="listbox" aria-label="Language Selector" className={theme.list}>
+                    <ul role="listbox" aria-label="Language Selector" className={theme.listClass}>
                         {filteredLanguages.map((l) => {
                             const label = getLabel(l);
                             const isSelected = l === selected;
@@ -157,9 +157,9 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
                                             else containerRef.current?.querySelector("input")?.focus();
                                         }
                                     }}
-                                    className={`${isSelected ? theme.selectedItem : theme.item}`}
+                                    className={`${isSelected ? theme.selectedItemClass : theme.itemClass}`}
                                 >
-                                    {showFlags && <Flag language={l} className="w-5 h-3" />}
+                                    {showFlags && <Flag language={l} className={theme.FlagListClass} />}
                                     <span className="whitespace-nowrap w-full">{label}</span>
                                     {isSelected && <span className='text-right'>✓</span>}
                                 </li>

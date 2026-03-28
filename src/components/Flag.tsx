@@ -3,17 +3,39 @@ import React from 'react';
 
 export interface FlagProps {
   language?: string;
-  svg?: string;
   className?: string;
   style?: React.CSSProperties;
   title?: string;
 }
 
-export default function Flag({ language, className, title }: FlagProps) {
+const GlobeIcon = () => (
+  <svg
+    width="100%"
+    height="100%"
+    viewBox="0 0 30 20" 
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    style={{
+      display: 'block',
+      borderRadius: '1px',
+      overflow: 'hidden',
+    }}
+  >
+    <rect width="30" height="20" fill="#F1F5F9" />
+    <g transform="translate(7, 2)" fill="none" stroke="#64748B" strokeWidth="1.2">
+      <circle cx="8" cy="8" r="7.5" />
+      <line x1="0.5" y1="8" x2="15.5" y2="8" />
+      <line x1="8" y1="0.5" x2="8" y2="15.5" />
+      <path d="M8 0.5C9.5 3 10.5 5.5 10.5 8C10.5 10.5 9.5 13 8 15.5" />
+      <path d="M8 0.5C6.5 3 5.5 5.5 5.5 8C5.5 10.5 6.5 13 8 15.5" />
+    </g>
+  </svg>
+);
 
-  if (!language) return null ;
+export default function Flag({ language, className, style, title }: FlagProps) {
+  if (!language) return null;
 
-  function GetFlag(lang: string): React.ReactNode {
+  const getFlagComponent = (lang: string) => {
     const flagComponents: Record<string, React.ComponentType<{ className?: string }>> = {
       'en': GB, 'en-us': US, 'en-gb': GB,
       'zh': CN, 'zh-cn': CN, 'zh-tw': TW, 'zh-hk': HK,
@@ -28,9 +50,25 @@ export default function Flag({ language, className, title }: FlagProps) {
     };
 
     const key = lang.toLowerCase();
+    // Lookup full key first, then fallback to prefix (e.g. 'en-AU' -> 'en')
     const Comp = flagComponents[key] ?? flagComponents[key.split('-')[0]];
-    return Comp ? <Comp className={className} /> : null;
-  }
+    
+    return Comp ? <Comp className="w-full h-full block" /> : <GlobeIcon />;
+  };
 
-  return <span className={className} title={title ?? language}>{GetFlag(language)}</span>;
+  return (
+    <span 
+      className={className} 
+      title={title ?? language}
+      style={{ 
+        display: 'inline-flex', 
+        alignItems: 'center', 
+        justifyContent: 'center',
+        verticalAlign: 'middle',
+        ...style 
+      }}
+    >
+      {getFlagComponent(language)}
+    </span>
+  );
 }
