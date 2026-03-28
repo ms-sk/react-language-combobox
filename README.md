@@ -47,7 +47,7 @@ function App(){
 ```css
 @import "tailwindcss";
 
-@source "../node_modules/react-language-combobox/**";
+@source "../node_modules/react-language-combobox/dist/**";
 ```
 
 Available exports
