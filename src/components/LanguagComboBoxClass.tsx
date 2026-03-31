@@ -7,5 +7,7 @@ export interface LanguageComboBoxClass {
     itemClass?: string;
     selectedItemClass?: string;
     searchBoxClass?: string;
-    searchBoxContainerClass?: string
+    searchBoxContainerClass?: string;
+    labelClass?: string;
+    arrowClass?: string;
 }

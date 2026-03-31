@@ -84,7 +84,6 @@ export const PRESETS = {
         "hy",
         "sq",
         "kk",
-        "kn",
         "as",
         "ne",
         "lo",

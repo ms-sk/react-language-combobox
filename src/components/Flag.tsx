@@ -12,7 +12,7 @@ const GlobeIcon = () => (
   <svg
     width="100%"
     height="100%"
-    viewBox="0 0 30 20" 
+    viewBox="0 0 30 20"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     style={{
@@ -52,20 +52,20 @@ export default function Flag({ language, className, style, title }: FlagProps) {
     const key = lang.toLowerCase();
     // Lookup full key first, then fallback to prefix (e.g. 'en-AU' -> 'en')
     const Comp = flagComponents[key] ?? flagComponents[key.split('-')[0]];
-    
+
     return Comp ? <Comp className="w-full h-full block" /> : <GlobeIcon />;
   };
 
   return (
-    <span 
-      className={className} 
+    <span
+      className={className}
       title={title ?? language}
-      style={{ 
-        display: 'inline-flex', 
-        alignItems: 'center', 
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
         justifyContent: 'center',
         verticalAlign: 'middle',
-        ...style 
+        ...style
       }}
     >
       {getFlagComponent(language)}

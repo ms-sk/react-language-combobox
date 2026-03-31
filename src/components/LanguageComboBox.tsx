@@ -94,8 +94,8 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
                 className={theme.buttonClass}
             >
                 {showFlags && <Flag language={selected} className={theme.FlagClass} title={selected} />}
-                <span className="text-left w-35">{getLabel(selected)}</span>
-                <span aria-hidden className="ml-1">▾</span>
+                <span className={theme.labelClass}>{getLabel(selected)}</span>
+                <span aria-hidden className={theme.arrowClass}>▾</span>
             </button>
 
             {open && (
