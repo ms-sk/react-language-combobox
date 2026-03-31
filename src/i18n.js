@@ -10,121 +10,86 @@ i18n
     fallbackLng: 'en',
     debug: true,
     resources: {
-  "en": {
-    "translation": {
-      "WelcomeToReact": "Welcome to React using react-i18next",
-      "SearchPlaceHolder": "Search..."
-    }
-  },
-  "zh": {
-    "translation": {
-      "WelcomeToReact": "欢迎使用 react-i18next 的 React 项目",
-      "SearchPlaceHolder": "搜索..."
-    }
-  },
-  "hi": {
-    "translation": {
-      "WelcomeToReact": "react-i18next का उपयोग करके React में आपका स्वागत है",
-      "SearchPlaceHolder": "खोजें..."
-    }
-  },
-  "es": {
-    "translation": {
-      "WelcomeToReact": "Bienvenido a React usando react-i18next",
-      "SearchPlaceHolder": "Buscar..."
-    }
-  },
-  "ar": {
-    "translation": {
-      "WelcomeToReact": "react-i18next باستخدام React مرحبًا بك في",
-      "SearchPlaceHolder": "بحث..."
-    }
-  },
-  "fr": {
-    "translation": {
-      "WelcomeToReact": "Bienvenue à React en utilisant react-i18next",
-      "SearchPlaceHolder": "Rechercher..."
-    }
-  },
-  "bn": {
-    "translation": {
-      "WelcomeToReact": "react-i18next ব্যবহার করে React-এ স্বাগতম",
-      "SearchPlaceHolder": "অনুসন্ধান করুন..."
-    }
-  },
-  "pt": {
-    "translation": {
-      "WelcomeToReact": "Bem-vindo ao React usando react-i18next",
-      "SearchPlaceHolder": "Pesquisar..."
-    }
-  },
-  "ru": {
-    "translation": {
-      "WelcomeToReact": "Добро пожаловать в React с использованием react-i18next",
-      "SearchPlaceHolder": "Поиск..."
-    }
-  },
-  "id": {
-    "translation": {
-      "WelcomeToReact": "Selamat datang di React menggunakan react-i18next",
-      "SearchPlaceHolder": "Cari..."
-    }
-  },
-  "ur": {
-    "translation": {
-      "WelcomeToReact": "میں خوش آمدید react-i18next کا استعمال کرتے ہوئے React",
-      "SearchPlaceHolder": "تلاش کریں..."
-    }
-  },
-  "de": {
-    "translation": {
-      "WelcomeToReact": "Willkommen bei React mit react-i18next",
-      "SearchPlaceHolder": "Suchen..."
-    }
-  },
-  "ja": {
-    "translation": {
-      "WelcomeToReact": "react-i18next を使用した React へようこそ",
-      "SearchPlaceHolder": "検索..."
-    }
-  },
-  "vi": {
-    "translation": {
-      "WelcomeToReact": "Chào mừng bạn đến với React sử dụng react-i18next",
-      "SearchPlaceHolder": "Tìm kiếm..."
-    }
-  },
-  "te": {
-    "translation": {
-      "WelcomeToReact": "react-i18nextని ఉపయోగిస్తూ Reactలోకి మీకు స్వాగతం",
-      "SearchPlaceHolder": "శోధించండి..."
-    }
-  },
-  "tr": {
-    "translation": {
-      "WelcomeToReact": "react-i18next kullanarak React'a hoş geldiniz",
-      "SearchPlaceHolder": "Ara..."
-    }
-  },
-  "ko": {
-    "translation": {
-      "WelcomeToReact": "react-i18next를 사용한 React에 오신 것을 환영합니다",
-      "SearchPlaceHolder": "검색..."
-    }
-  },
-  "it": {
-    "translation": {
-      "WelcomeToReact": "Benvenuto in React usando react-i18next",
-      "SearchPlaceHolder": "Cerca..."
-    }
-  },
-  "fa": {
-    "translation": {
-      "WelcomeToReact": "خوش آمدید react-i18next با استفاده از React به",
-      "SearchPlaceHolder": "جستجو..."
-    }
-  }
-},
+      "zh": { "translation": { "WelcomeToReact": "欢迎来到 React 和 react-i18next", "SearchPlaceHolder": "搜索..." } },
+      "zh-cn": { "translation": { "WelcomeToReact": "欢迎来到 React 和 react-i18next", "SearchPlaceHolder": "搜索..." } },
+      "zh-tw": { "translation": { "WelcomeToReact": "歡迎來到 React 和 react-i18next", "SearchPlaceHolder": "搜尋..." } },
+      "zh-hk": { "translation": { "WelcomeToReact": "歡迎來到 React 和 react-i18next", "SearchPlaceHolder": "搜尋..." } },
+      "es": { "translation": { "WelcomeToReact": "Bienvenido a React y react-i18next", "SearchPlaceHolder": "Buscar..." } },
+      "es-mx": { "translation": { "WelcomeToReact": "Bienvenido a React y react-i18next", "SearchPlaceHolder": "Buscar..." } },
+      "en": { "translation": { "WelcomeToReact": "Welcome to React and react-i18next", "SearchPlaceHolder": "Search..." } },
+      "en-us": { "translation": { "WelcomeToReact": "Welcome to React and react-i18next", "SearchPlaceHolder": "Search..." } },
+      "en-gb": { "translation": { "WelcomeToReact": "Welcome to React and react-i18next", "SearchPlaceHolder": "Search..." } },
+      "hi": { "translation": { "WelcomeToReact": "React और react-i18next में आपका स्वागत है", "SearchPlaceHolder": "खोजें..." } },
+      "bn": { "translation": { "WelcomeToReact": "React এবং react-i18next-এ স্বাগতম", "SearchPlaceHolder": "অনুসন্ধান করুন..." } },
+      "pt": { "translation": { "WelcomeToReact": "Bem-vindo ao React e react-i18next", "SearchPlaceHolder": "Pesquisar..." } },
+      "pt-br": { "translation": { "WelcomeToReact": "Bem-vindo ao React e react-i18next", "SearchPlaceHolder": "Pesquisar..." } },
+      "ru": { "translation": { "WelcomeToReact": "Добро пожаловать в React и react-i18next", "SearchPlaceHolder": "Поиск..." } },
+      "ur": { "translation": { "WelcomeToReact": "React اور react-i18next میں خوش آمدید", "SearchPlaceHolder": "تلاش کریں..." } },
+      "id": { "translation": { "WelcomeToReact": "Selamat datang di React dan react-i18next", "SearchPlaceHolder": "Cari..." } },
+      "de": { "translation": { "WelcomeToReact": "Willkommen bei React und react-i18next", "SearchPlaceHolder": "Suche..." } },
+      "ja": { "translation": { "WelcomeToReact": "React と react-i18next へようこそ", "SearchPlaceHolder": "検索..." } },
+      "mr": { "translation": { "WelcomeToReact": "React आणि react-i18next मध्ये आपले स्वागत आहे", "SearchPlaceHolder": "शोधा..." } },
+      "te": { "translation": { "WelcomeToReact": "React మరియు react-i18next కి స్వాగతం", "SearchPlaceHolder": "శోధించండి..." } },
+      "ta": { "translation": { "WelcomeToReact": "React மற்றும் react-i18next-க்கு வரவேற்கிறோம்", "SearchPlaceHolder": "தேடு..." } },
+      "tr": { "translation": { "WelcomeToReact": "React ve react-i18next'e hoş geldiniz", "SearchPlaceHolder": "Ara..." } },
+      "ko": { "translation": { "WelcomeToReact": "React 및 react-i18next에 오신 것을 환영합니다", "SearchPlaceHolder": "검색..." } },
+      "fr": { "translation": { "WelcomeToReact": "Bienvenue sur React et react-i18next", "SearchPlaceHolder": "Rechercher..." } },
+      "vi": { "translation": { "WelcomeToReact": "Chào mừng bạn đến với React và react-i18next", "SearchPlaceHolder": "Tìm kiếm..." } },
+      "pa": { "translation": { "WelcomeToReact": "React ਅਤੇ react-i18next ਵਿੱਚ ਤੁਹਾਡਾ ਸੁਆਗਤ ਹੈ", "SearchPlaceHolder": "ਖੋਜੋ..." } },
+      "it": { "translation": { "WelcomeToReact": "Benvenuto in React e react-i18next", "SearchPlaceHolder": "Cerca..." } },
+      "ha": { "translation": { "WelcomeToReact": "Barka da zuwa React da react-i18next", "SearchPlaceHolder": "Bincika..." } },
+      "sw": { "translation": { "WelcomeToReact": "Karibu kwenye React na react-i18next", "SearchPlaceHolder": "Tafuta..." } },
+      "fa": { "translation": { "WelcomeToReact": "به React و react-i18next خوش آمدید", "SearchPlaceHolder": "جستجو..." } },
+      "kn": { "translation": { "WelcomeToReact": "React ಮತ್ತು react-i18next ಗೆ ಸುಸ್ವಾಗತ", "SearchPlaceHolder": "ಹುಡುಕಿ..." } },
+      "gu": { "translation": { "WelcomeToReact": "React અને react-i18next માં આપનું સ્વાગત છે", "SearchPlaceHolder": "શોધો..." } },
+      "th": { "translation": { "WelcomeToReact": "ยินดีต้อนรับสู่ React และ react-i18next", "SearchPlaceHolder": "ค้นหา..." } },
+      "pl": { "translation": { "WelcomeToReact": "Witaj w React i react-i18next", "SearchPlaceHolder": "Szukaj..." } },
+      "uk": { "translation": { "WelcomeToReact": "Ласкаво просимо до React та react-i18next", "SearchPlaceHolder": "Пошук..." } },
+      "my": { "translation": { "WelcomeToReact": "React နှင့် react-i18next မှ ကြိုဆိုပါသည်", "SearchPlaceHolder": "ရှာဖွေရန်..." } },
+      "yo": { "translation": { "WelcomeToReact": "Kaabo si React ati react-i18next", "SearchPlaceHolder": "Wa..." } },
+      "or": { "translation": { "WelcomeToReact": "React ଏବଂ react-i18next କୁ ସ୍ୱାଗତ", "SearchPlaceHolder": "ଖୋଜନ୍ତୁ..." } },
+      "az": { "translation": { "WelcomeToReact": "React və react-i18next-ə xoş gəlmisiniz", "SearchPlaceHolder": "Axtar..." } },
+      "ml": { "translation": { "WelcomeToReact": "React, react-i18next എന്നിവയിലേക്ക് സ്വാഗതം", "SearchPlaceHolder": "തിരയുക..." } },
+      "ro": { "translation": { "WelcomeToReact": "Bun venit la React și react-i18next", "SearchPlaceHolder": "Caută..." } },
+      "uz": { "translation": { "WelcomeToReact": "React va react-i18next-ga xush kelibsiz", "SearchPlaceHolder": "Qidirish..." } },
+      "si": { "translation": { "WelcomeToReact": "React සහ react-i18next වෙත සාදරයෙන් පිළිගනිමු", "SearchPlaceHolder": "සොයන්න..." } },
+      "hu": { "translation": { "WelcomeToReact": "Üdvözöljük a React és a react-i18next világában", "SearchPlaceHolder": "Keresés..." } },
+      "so": { "translation": { "WelcomeToReact": "Ku soo dhawaada React iyo react-i18next", "SearchPlaceHolder": "Raadi..." } },
+      "el": { "translation": { "WelcomeToReact": "Καλώς ήρθατε στο React και στο react-i18next", "SearchPlaceHolder": "Αναζήτηση..." } },
+      "cs": { "translation": { "WelcomeToReact": "Vítejte v Reactu a react-i18next", "SearchPlaceHolder": "Hledat..." } },
+      "zu": { "translation": { "WelcomeToReact": "Siyakwamukela ku-React ne-react-i18next", "SearchPlaceHolder": "Funa..." } },
+      "sk": { "translation": { "WelcomeToReact": "Vitajte v React a react-i18next", "SearchPlaceHolder": "Hľadať..." } },
+      "be": { "translation": { "WelcomeToReact": "Сардэчна запрашаем у React і react-i18next", "SearchPlaceHolder": "Пошук..." } },
+      "bg": { "translation": { "WelcomeToReact": "Добре дошли в React и react-i18next", "SearchPlaceHolder": "Търсене..." } },
+      "tl": { "translation": { "WelcomeToReact": "Maligayang pagdating sa React at react-i18next", "SearchPlaceHolder": "Maghanap..." } },
+      "ph": { "translation": { "WelcomeToReact": "Maligayang pagdating sa React at react-i18next", "SearchPlaceHolder": "Maghanap..." } },
+      "mg": { "translation": { "WelcomeToReact": "Tongasoa eto amin'ny React sy react-i18next", "SearchPlaceHolder": "Hikaroka..." } },
+      "sr": { "translation": { "WelcomeToReact": "Добродошли у React и react-i18next", "SearchPlaceHolder": "Претрага..." } },
+      "hr": { "translation": { "WelcomeToReact": "Dobrodošli u React i react-i18next", "SearchPlaceHolder": "Pretraži..." } },
+      "hy": { "translation": { "WelcomeToReact": "Բարի գալուստ React և react-i18next", "SearchPlaceHolder": "Փնտրել..." } },
+      "sq": { "translation": { "WelcomeToReact": "Mirë se vini në React dhe react-i18next", "SearchPlaceHolder": "Kërko..." } },
+      "kk": { "translation": { "WelcomeToReact": "React және react-i18next әлеміне қош келдіңіз", "SearchPlaceHolder": "Іздеу..." } },
+      "as": { "translation": { "WelcomeToReact": "React আৰু react-i18next লৈ স্বাগতম", "SearchPlaceHolder": "সন্ধান কৰক..." } },
+      "ne": { "translation": { "WelcomeToReact": "React र react-i18next मा तपाईंलाई स्वागत छ", "SearchPlaceHolder": "खोज्नुहोस्..." } },
+      "lo": { "translation": { "WelcomeToReact": "ຍິນດີຕ້ອນຮັບເຂົ້າສູ່ React ແລະ react-i18next", "SearchPlaceHolder": "ຄົ້ນຫາ..." } },
+      "km": { "translation": { "WelcomeToReact": "សូមស្វាគមន៍មកកាន់ React និង react-i18next", "SearchPlaceHolder": "ស្វែងរក..." } },
+      "mn": { "translation": { "WelcomeToReact": "React болон react-i18next-д тавтай морилно уу", "SearchPlaceHolder": "Хайх..." } },
+      "ky": { "translation": { "WelcomeToReact": "React жана react-i18next дүйнөсүнө кош келиңиз", "SearchPlaceHolder": "Издөө..." } },
+      "tg": { "translation": { "WelcomeToReact": "Хуш омадед ба React ва react-i18next", "SearchPlaceHolder": "Ҷустуҷӯ..." } },
+      "sv": { "translation": { "WelcomeToReact": "Välkommen till React och react-i18next", "SearchPlaceHolder": "Sök..." } },
+      "no": { "translation": { "WelcomeToReact": "Velkommen til React og react-i18next", "SearchPlaceHolder": "Søk..." } },
+      "da": { "translation": { "WelcomeToReact": "Velkommen til React og react-i18next", "SearchPlaceHolder": "Søg..." } },
+      "fi": { "translation": { "WelcomeToReact": "Tervetuloa Reactiin ja react-i18nextiin", "SearchPlaceHolder": "Hae..." } },
+      "et": { "translation": { "WelcomeToReact": "Tere tulemast Reacti ja react-i18nexti", "SearchPlaceHolder": "Otsi..." } },
+      "lv": { "translation": { "WelcomeToReact": "Laipni lūdzam React un react-i18next", "SearchPlaceHolder": "Meklēt..." } },
+      "lt": { "translation": { "WelcomeToReact": "Sveiki atvykę į React ir react-i18next", "SearchPlaceHolder": "Paieška..." } },
+      "sl": { "translation": { "WelcomeToReact": "Dobrodošli v React in react-i18next", "SearchPlaceHolder": "Išči..." } },
+      "bs": { "translation": { "WelcomeToReact": "Dobrodošli u React i react-i18next", "SearchPlaceHolder": "Traži..." } },
+      "mk": { "translation": { "WelcomeToReact": "Добредојдовте во React и react-i18next", "SearchPlaceHolder": "Пребарај..." } },
+      "xh": { "translation": { "WelcomeToReact": "Wamkelekile kwi-React kunye ne-react-i18next", "SearchPlaceHolder": "Khangela..." } },
+      "ka": { "translation": { "WelcomeToReact": "კეთილი იყოს თქვენი მობრძანება React-სა და react-i18next-ში", "SearchPlaceHolder": "ძიება..." } },
+      "ga": { "translation": { "WelcomeToReact": "Fáilte go React agus react-i18next", "SearchPlaceHolder": "Cuardaigh..." } }
+    },
     interpolation: {
       escapeValue: false,
     }
