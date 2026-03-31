@@ -51,7 +51,7 @@ function App() {
             <div className="p-6 bg-slate-950 rounded-2xl flex justify-center shadow-inner">
               <LanguageComboBox 
                 {...config}
-                languages={["404","en", "fr", "de", "es"]}
+                languages={PRESETS.All}
                 defaultLanguage={i18n.resolvedLanguage || 'en'}
                 languageChanged={(lng) => i18n.changeLanguage(lng)}
                 theme={darkTheme}

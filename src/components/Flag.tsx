@@ -46,7 +46,7 @@ export default function Flag({ language, className, style, title }: FlagProps) {
       'ar': SA, 'fa': IR, 'hy': AM, 'az': AZ, 'ka': GE, 'kk': KZ, 'uz': UZ, 'be': BY, 'ky': KG, 'tg': TJ,
       'sw': KE, 'ha': NG, 'yo': NG, 'so': SO, 'zu': ZA, 'xh': ZA,
       'ja': JP, 'ko': KR, 'vi': VN, 'th': TH, 'km': KH, 'lo': LA, 'mn': MN,
-      'ne': NP, 'si': LK, 'ph': PH, 'tl': PH, 'fil': PH, 'mg': MG, 'ie': IE, 'tr': TR,
+      'ne': NP, 'si': LK, 'ph': PH, 'tl': PH, 'fil': PH, 'mg': MG, 'ie': IE, "ga": IE, 'tr': TR,
     };
 
     const key = lang.toLowerCase();
