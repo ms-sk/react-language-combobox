@@ -54,8 +54,8 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
 
     useEffect(() => {
         if (open) {
-            const firstElement = showSearchBox 
-                ? containerRef.current?.querySelector("input") 
+            const firstElement = showSearchBox
+                ? containerRef.current?.querySelector("input")
                 : containerRef.current?.querySelector('[role="option"]');
             (firstElement as HTMLElement | null)?.focus();
         } else {
@@ -74,7 +74,7 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
 
     const filteredLanguages = useMemo(() => {
         const list = languages.length > 0 ? languages : ['en'];
-        return list.filter(lng => 
+        return list.filter(lng =>
             getLabel(lng).toLowerCase().includes(searchQuery.toLowerCase())
         );
     }, [languages, searchQuery, selected, nameDisplayMode]);
@@ -102,7 +102,7 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
                 <>
                     {showSearchBox && (
                         <div className={theme.searchBoxContainerClass}>
-                            <input 
+                            <input
                                 type='text'
                                 tabIndex={0}
                                 className={theme.searchBoxClass}
@@ -127,18 +127,20 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
                         {filteredLanguages.map((l) => {
                             const label = getLabel(l);
                             const isSelected = l === selected;
+
                             return (
                                 <li
                                     key={l}
                                     role="option"
                                     aria-selected={isSelected}
                                     tabIndex={0}
+                                    ref={(el) => { if (isSelected && el) (el as HTMLElement).focus(); }}
                                     aria-label={label}
                                     onClick={() => selectLanguage(l)}
                                     onKeyDown={(e) => {
-                                        if (e.key === 'Enter' || e.key === ' ') { 
-                                            e.preventDefault(); 
-                                            selectLanguage(l); 
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            selectLanguage(l);
                                         }
                                         if (e.key === 'ArrowDown') {
                                             e.preventDefault();
@@ -156,8 +158,7 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
                                     {showFlags && <Flag language={l} className={theme.FlagListClass} />}
                                     <span className="whitespace-nowrap w-full">{label}</span>
                                     {isSelected && <span className='text-right'>✓</span>}
-                                </li>
-                            );
+                                </li>)
                         })}
                     </ul>
                 </>
