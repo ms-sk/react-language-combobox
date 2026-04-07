@@ -135,7 +135,11 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
                                     role="option"
                                     aria-selected={isSelected}
                                     tabIndex={0}
-                                    ref={(el) => { if (isSelected && el) (el as HTMLElement).focus(); }}
+                                    ref={(el) => {
+                                        if (isSelected && el) {
+                                            setTimeout(() => (el as HTMLElement).focus(), 0);
+                                        }
+                                    }}
                                     aria-label={label}
                                     onClick={() => selectLanguage(l)}
                                     onKeyDown={(e) => {
