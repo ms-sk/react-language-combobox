@@ -136,7 +136,7 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
                                     aria-selected={isSelected}
                                     tabIndex={0}
                                     ref={(el) => {
-                                        if (isSelected && el) {
+                                        if (!showSearchBox && isSelected && el) {
                                             setTimeout(() => (el as HTMLElement).focus(), 0);
                                         }
                                     }}
