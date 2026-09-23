@@ -2,7 +2,7 @@
 
 .language-combobox-scroll {
 	scrollbar-width: thin; /* Firefox */
-	scrollbar-color: rgba(0,0,0,0.25);
+	scrollbar-color: rgba(0,0,0,0.25) transparent;
 }
 .language-combobox-scroll::-webkit-scrollbar {
 	width: 8px;

@@ -16,7 +16,7 @@ function getLanguageLabel(code: string, selected: string, mode: NameDisplayMode)
     try {
         const targetLocale = localeMap[mode] || 'en';
         return new Intl.DisplayNames([targetLocale], { type: 'language' }).of(code) ?? code;
-    } catch (e) {
+    } catch {
         return code;
     }
 }
@@ -39,6 +39,14 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
 
     const containerRef = useRef<HTMLDivElement | null>(null);
     const buttonRef = useRef<HTMLButtonElement | null>(null);
+    const defaultLanguageRef = useRef(defaultLanguage);
+
+    useEffect(() => {
+        if (defaultLanguageRef.current !== defaultLanguage) {
+            defaultLanguageRef.current = defaultLanguage;
+            setSelected(defaultLanguage);
+        }
+    }, [defaultLanguage]);
 
     useEffect(() => {
         function onDoc(e: MouseEvent) {
@@ -47,10 +55,6 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
         document.addEventListener('click', onDoc);
         return () => document.removeEventListener('click', onDoc);
     }, []);
-
-    useEffect(() => {
-        setSelected(defaultLanguage);
-    }, [defaultLanguage]);
 
     useEffect(() => {
         if (open) {
@@ -70,12 +74,10 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
         setOpen(false);
     };
 
-    const getLabel = (code: string) => getLanguageLabel(code, selected, nameDisplayMode);
-
     const filteredLanguages = useMemo(() => {
         const list = languages.length > 0 ? languages : ['en'];
         return list.filter(lng =>
-            getLabel(lng).toLowerCase().includes(searchQuery.toLowerCase())
+            getLanguageLabel(lng, selected, nameDisplayMode).toLowerCase().includes(searchQuery.toLowerCase())
         );
     }, [languages, searchQuery, selected, nameDisplayMode]);
 
@@ -94,7 +96,7 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
                 className={theme.buttonClass}
             >
                 {showFlags && <Flag language={selected} className={theme.FlagClass} title={selected} />}
-                <span className={theme.labelClass}>{getLabel(selected)}</span>
+                <span className={theme.labelClass}>{getLanguageLabel(selected, selected, nameDisplayMode)}</span>
                 {open && <span aria-hidden className={theme.arrowClass}>▴</span>}
                 {!open && <span aria-hidden className={theme.arrowClass}>▾</span>}
             </button>
@@ -126,7 +128,7 @@ export function LanguageComboBox(properties: LanguageComboBoxProperties) {
                     )}
                     <ul role="listbox" aria-label="Language Selector" className={theme.listClass}>
                         {filteredLanguages.map((l) => {
-                            const label = getLabel(l);
+                            const label = getLanguageLabel(l, selected, nameDisplayMode);
                             const isSelected = l === selected;
 
                             return (

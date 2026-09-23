@@ -1,4 +1,4 @@
-import type { LanguageComboBoxClass } from "../components/LanguagComboBoxClass";
+import type { LanguageComboBoxClass } from "../components/LanguageComboBoxClass";
 
 export const darkTheme: LanguageComboBoxClass = {
     containerClass: 'relative w-full',

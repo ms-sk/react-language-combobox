@@ -8,7 +8,7 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: 'en',
-    debug: true,
+    debug: false,
     resources: {
       "zh": { "translation": { "WelcomeToReact": "欢迎来到 React 和 react-i18next", "SearchPlaceHolder": "搜索..." } },
       "zh-cn": { "translation": { "WelcomeToReact": "欢迎来到 React 和 react-i18next", "SearchPlaceHolder": "搜索..." } },

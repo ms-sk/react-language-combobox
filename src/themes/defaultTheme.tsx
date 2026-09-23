@@ -1,4 +1,4 @@
-import type { LanguageComboBoxClass } from "../components/LanguagComboBoxClass";
+import type { LanguageComboBoxClass } from "../components/LanguageComboBoxClass";
 export const defaultTheme: LanguageComboBoxClass = {
     containerClass: 'relative w-full', 
     buttonClass: 'w-full justify-between focus:outline-none focus:border-gray-400 bg-white text-gray-800 border border-gray-300 hover:bg-gray-50 flex rounded-lg items-center gap-2 px-3 py-1.5 transition-all',

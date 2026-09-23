@@ -9,7 +9,7 @@ import { defaultTheme } from "./themes/defaultTheme";
 
 function App() {
   const { t, i18n } = useTranslation();
-  const [isReady, setIsReady] = useState(false);
+  const [isReady, setIsReady] = useState(() => i18n.isInitialized);
   const [config, setConfig] = useState<Partial<LanguageComboBoxProperties>>({
     showSearchBox: false,
     showFlags: true,
@@ -17,8 +17,11 @@ function App() {
   });
 
   useEffect(() => {
-    if (i18n.isInitialized) setIsReady(true);
-    else i18n.on('initialized', () => setIsReady(true));
+    if (!i18n.isInitialized) {
+      const handler = () => setIsReady(true);
+      i18n.on('initialized', handler);
+      return () => { i18n.off('initialized', handler); };
+    }
   }, [i18n]);
 
   if (!isReady) return <div className="p-10 font-sans">Loading...</div>;

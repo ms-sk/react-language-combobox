@@ -1,7 +1,10 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
-import { resolve } from 'path';
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   plugins: [
@@ -10,8 +13,7 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      // Hier den Pfad zu deiner Hauptdatei (z.B. index.ts oder LanguagePicker.tsx)
-      entry: resolve(__dirname, 'src/index.ts'), 
+      entry: resolve(__dirname, 'src/index.ts'),
       name: 'ReactLanguageCombobox',
       fileName: (format) => `react-language-combobox.${format === 'es' ? 'es' : 'cjs'}.js`,
       formats: ['es', 'cjs']

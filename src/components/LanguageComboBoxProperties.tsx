@@ -1,4 +1,4 @@
-import type { LanguageComboBoxClass } from "./LanguagComboBoxClass";
+import type { LanguageComboBoxClass } from "./LanguageComboBoxClass";
 import type { NameDisplayMode } from "./NameDisplayMode";
 
 
